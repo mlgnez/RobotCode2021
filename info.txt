@@ -1,2 +1,0 @@
-This is code that will not make Hyperion attack people.
-The robot is not gaining sentiance 
