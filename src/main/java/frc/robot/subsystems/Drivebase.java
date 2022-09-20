@@ -175,6 +175,9 @@ public class Drivebase extends SubsystemBase {
 
     public void setSlot(int slot) {
         // Add asserts as the motorcontrollers only support 4 slots
+        //Rudy - Why not just:
+            //assert(slot == 4); ?
+        //code never got used anyway though
         assert (slot >= 0);
         assert (slot <= 3);
 
