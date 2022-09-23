@@ -52,7 +52,7 @@ public class RobotMap {
 		limelight.setLEDState(LEDState.DEFAULT);
 		limelight.setPipeline(9);
 		bindKeys();
-
+			
 		printAutonChooser();
     }
 
@@ -88,9 +88,8 @@ public class RobotMap {
 			// Balancer Right
 			new JoystickButton(driver, Xbox.Button.BUMPER_R.ordinal() + 1)
 					.whenHeld(new BalancerCommand(systems, false));
-
 			new JoystickButton(driver, Xbox.Button.Y.ordinal() + 1)
-					.whenHeld(new IdleCommand(systems.getDrivebase()));
+					.toggleWhenPressed(new DoNothingCommand(systems.getDrivebase()));
 
 		}
 
@@ -227,9 +226,9 @@ public class RobotMap {
 		{
 			driver.setDeadzone(Constants.DRIVER_XBOX_DEADZONE);
 
-			systems.getDrivebase().setDefaultCommand(new DefaultDrive(systems,
-					() -> -driver.getRawAxis(Xbox.Axis.LEFT_Y),() -> -driver.getRawAxis(Xbox.Axis.LEFT_X)));
-
+			// systems.getDrivebase().setDefaultCommand(new DefaultDrive(systems,
+			// 		() -> -driver.getRawAxis(Xbox.Axis.LEFT_Y),() -> -driver.getRawAxis(Xbox.Axis.LEFT_X)));
+			systems.getDrivebase().setDefaultCommand(new IdleCommand(systems.getDrivebase()));
 			systems.getElevator().setDefaultCommand(new DefaultElevator(systems,
 					() -> driver.getRawAxis(Xbox.Axis.TRIGGER_RIGHT) - driver.getRawAxis(Xbox.Axis.TRIGGER_LEFT)));
 		}
