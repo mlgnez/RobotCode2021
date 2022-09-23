@@ -189,6 +189,7 @@ public class Drivebase extends SubsystemBase {
         right.set(ControlMode.PercentOutput, driveRight);
     }
 
+                      //Drives forward with power and turn with turn              
     public void drivePercentageArcade(double power, double turn) {
         /*
          * Arbitrary based turning. Theoretically better as it is controlled by the

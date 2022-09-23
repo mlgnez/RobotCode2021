@@ -89,6 +89,9 @@ public class RobotMap {
 			new JoystickButton(driver, Xbox.Button.BUMPER_R.ordinal() + 1)
 					.whenHeld(new BalancerCommand(systems, false));
 
+			new JoystickButton(driver, Xbox.Button.Y.ordinal() + 1)
+					.whenHeld(new IdleCommand(systems.getDrivebase()));
+
 		}
 
 		// ===========================

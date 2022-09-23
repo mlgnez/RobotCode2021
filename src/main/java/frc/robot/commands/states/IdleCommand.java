@@ -31,11 +31,7 @@ public class IdleCommand extends CommandBase {
      */
     @Override
     public void execute() {
-        rotationCounts += 1;
-        if(rotationCounts == 360) {
-            rotationCounts = 0;
-        }
-        drivebase.driveMotionMagic(0, rotationCounts);
+        drivebase.drivePercentageArcade(0, 0.3f);
         // TODO: Check if apriltag is detected then set finish-flag to true
         // Maybe with a bool ApriltagDetect()
     }
@@ -69,7 +65,8 @@ public class IdleCommand extends CommandBase {
      */
     @Override
     public void end(boolean interrupted) {
-        drivebase.driveMotionMagic(0, 0);
+        drivebase.drivePercentageArcade(0, 0);
+        resetVarsToDefault();
     }
 
     public void resetVarsToDefault() {
