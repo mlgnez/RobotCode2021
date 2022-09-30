@@ -1,14 +1,27 @@
 package frc.robot.commands.states;
 
+import com.ctre.phoenix.motorcontrol.NeutralMode;
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import frc.robot.Constants;
+import frc.robot.commands.CameraCaptureCommand;
 import frc.robot.subsystems.Drivebase;
+import frc.team5431.titan.core.vision.CameraMode;
+import frc.team5431.titan.core.vision.LEDState;
+import frc.team5431.titan.core.vision.Limelight;
 
+/**
+ * Watch out Phillip
+ *
+ * @author Rudy Soliz
+ * @author Nicholas Vettor
+ */
 
 public class IdleCommand extends CommandBase {
     private final Drivebase drivebase;
 
     public int rotationCounts;
     public boolean finishedFlag = false;
+    public int CameraID = 0;
 
     public IdleCommand(Drivebase drivebase) {
         this.drivebase = drivebase;
@@ -23,6 +36,9 @@ public class IdleCommand extends CommandBase {
     @Override
     public void initialize() {
         resetVarsToDefault();
+
+        CameraCaptureCommand.initialize(CameraID);
+
     }
 
     /**
@@ -33,6 +49,36 @@ public class IdleCommand extends CommandBase {
     public void execute() {
         drivebase.drivePercentageArcade(0, 0.3f);
         // TODO: Check if apriltag is detected then set finish-flag to true
+
+        CameraCaptureCommand.execute();
+
+        //somehow send frame using wpilib CameraCaptureCommand.getFrame();
+
+        if(CameraCaptureCommand.getDict() != null) {
+
+            if (CameraCaptureCommand.hasWorked()) {
+
+                finishedFlag = true;
+
+                /*Limelight limelight = new Limelight(Constants.VISION_FRONT_LIMELIGHT);
+
+                limelight.setLEDState(LEDState.DEFAULT);
+                limelight.setPipeline(9);
+
+                limelight.setCameraMode(CameraMode.VISION);
+
+                //if(limelight.)
+
+                //keep limelight on until it gets results, then aim and shoot!
+
+                //implement debounce so this doesnt run 100's of times (also add timeout to that debounce, so it doesnt break the robot)
+
+                //ill try to get the robot to stop spinning if it detects something */
+
+            }
+
+        }
+
         // Maybe with a bool ApriltagDetect()
     }
 

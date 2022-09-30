@@ -2,6 +2,7 @@ package frc.robot;
 
 import com.ctre.phoenix.motorcontrol.NeutralMode;
 
+import edu.wpi.first.wpilibj.Filesystem;
 import frc.robot.util.MotionMagic;
 import frc.team5431.titan.core.leds.BlinkinPattern;
 import edu.wpi.first.math.controller.PIDController;
@@ -209,5 +210,11 @@ public final class Constants {
     public static final int[] DIGITAL_INPUT_IDS = {6, 8, 7, 9};
 	public static final int PIVOT_PDP_SLOT = 4;
 	public static final int FEEDER_PDP_SLOT = 5;
+
+    // ================================================================================
+    // AI Dataset XML File
+    // ================================================================================
+
+    public static final String DATASET_XML_NAME = Filesystem.getDeployDirectory().toPath() + "/cascade.xml";
 }
  
